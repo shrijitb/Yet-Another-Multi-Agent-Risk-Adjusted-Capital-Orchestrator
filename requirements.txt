@@ -1,0 +1,23 @@
+# Core dependencies for Risk-Adjusted Hypervisor
+# Install with: pip install -r requirements.txt
+
+# Exchange connectivity (required for live trading)
+ccxt>=4.0.0
+
+# Numerical computing (used in risk engine)
+numpy>=1.21.0
+
+# Standard library dependencies (included with Python 3.10+)
+# - sqlite3 (for audit database)
+# - json, time, logging, threading, etc.
+
+# Optional dependencies for enhanced functionality:
+# pandas>=1.3.0          # For advanced data analysis (not currently used but may be added)
+# matplotlib>=3.5.0      # For plotting performance charts (not currently used)
+# jupyter>=1.0.0         # For interactive analysis notebooks (not currently used)
+
+# Development/testing dependencies (install with: pip install -r requirements.txt -e .[dev])
+# pytest>=7.0.0          # For unit testing
+# pytest-cov>=4.0.0      # For coverage reporting
+# black>=22.0.0          # For code formatting
+# flake8>=5.0.0          # For linting

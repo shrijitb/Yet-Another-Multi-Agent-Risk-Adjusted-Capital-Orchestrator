@@ -1,18 +1,20 @@
 # Risk-Adjusted Hypervisor
 
-A production-ready quantitative trading system for delta-neutral funding rate arbitrage with advanced risk management and portfolio optimization.
+A quantitative trading system for delta-neutral funding rate arbitrage with risk management and portfolio optimization. Currently in active development and testing phase.
 
-## 🎯 Overview
+## Overview
 
 The Hypervisor is a modular trading framework designed to capture funding rate arbitrage opportunities in perpetual futures markets while maintaining strict risk controls. It automatically:
 
-- **Scans** all perpetual futures pairs for positive funding rates
-- **Executes** delta-neutral positions (spot long + futures short)
-- **Manages** portfolio risk through VaR/CVaR limits and position sizing
-- **Optimizes** capital allocation based on Sharpe ratio performance
-- **Backtests** against historical funding rate data
+- Scans all perpetual futures pairs for positive funding rates
+- Executes delta-neutral positions (spot long + futures short)
+- Manages portfolio risk through VaR/CVaR limits and position sizing
+- Optimizes capital allocation based on Sharpe ratio performance
+- Backtests against historical funding rate data
 
-## 🏗️ Architecture
+**Current Status**: The system is in active development and testing. While it runs autonomously and maintains basic risk controls, it currently loses money slowly due to execution costs, slippage, and market inefficiencies. The primary value at this stage is in the autonomous operation and data collection for future improvements.
+
+## Architecture
 
 ```
 main.py
@@ -26,18 +28,18 @@ main.py
 
 ### Key Components
 
-- **Hypervisor**: Main orchestration loop that runs every rebalance interval
-- **Risk Engine**: Monte Carlo VaR/CVaR calculations and capital allocation
-- **Portfolio State**: Real-time position tracking and P&L calculation
-- **Audit Database**: SQLite-based logging for performance analysis
-- **Workers**: Pluggable trading strategies (currently funding arbitrage)
+- Hypervisor: Main orchestration loop that runs every rebalance interval
+- Risk Engine: Monte Carlo VaR/CVaR calculations and capital allocation
+- Portfolio State: Real-time position tracking and P&L calculation
+- Audit Database: SQLite-based logging for performance analysis
+- Workers: Pluggable trading strategies (currently funding arbitrage)
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
 - Python 3.10+
-- Required packages (install via `pip install -r requirements.txt`)
+- Install dependencies: `pip install -r requirements.txt`
 
 ### Installation
 
@@ -90,7 +92,7 @@ touch stop
 
 Or double-click `stop.bat` on Windows.
 
-## ⚙️ Configuration
+## Configuration
 
 Edit `config.py` to customize:
 
@@ -112,34 +114,34 @@ MIN_FUNDING_RATE = 0.0001  # 0.01%
 PAPER_TRADING = True  # Set to False for live trading
 ```
 
-## 📊 Strategy: Delta-Neutral Funding Arbitrage
+## Strategy: Delta-Neutral Funding Arbitrage
 
 ### How It Works
 
-1. **Scan**: Monitor all perpetual futures pairs for positive funding rates
-2. **Select**: Choose the best opportunity above minimum threshold
-3. **Execute**: Open delta-neutral position:
+1. Scan: Monitor all perpetual futures pairs for positive funding rates
+2. Select: Choose the best opportunity above minimum threshold
+3. Execute: Open delta-neutral position:
    - Buy spot (long)
    - Sell futures (short)
-4. **Collect**: Earn funding payments every 8 hours
-5. **Monitor**: Watch for rate reversals and rotate positions
+4. Collect: Earn funding payments every 8 hours
+5. Monitor: Watch for rate reversals and rotate positions
 
 ### Risk Management
 
-- **Delta Neutral**: No directional market exposure
-- **VaR Limits**: Stop trading if portfolio VaR exceeds 5% of capital
-- **Sharpe Filtering**: Only trade opportunities with Sharpe > 0.5
-- **Position Sizing**: Dynamic allocation based on risk-adjusted returns
-- **Emergency Hedge**: Close all positions if risk limits breached
+- Delta Neutral: No directional market exposure
+- VaR Limits: Stop trading if portfolio VaR exceeds 5% of capital
+- Sharpe Filtering: Only trade opportunities with Sharpe > 0.5
+- Position Sizing: Dynamic allocation based on risk-adjusted returns
+- Emergency Hedge: Close all positions if risk limits breached
 
 ### Risk Factors
 
-- **Exchange Risk**: Counterparty risk if exchange fails
-- **Liquidation Risk**: Futures leg liquidation during extreme moves
-- **Funding Reversal**: Rate flips negative, you start paying
-- **Slippage**: Execution costs during entry/exit
+- Exchange Risk: Counterparty risk if exchange fails
+- Liquidation Risk: Futures leg liquidation during extreme moves
+- Funding Reversal: Rate flips negative, you start paying
+- Slippage: Execution costs during entry/exit
 
-## 📈 Backtesting
+## Backtesting
 
 The system includes comprehensive backtesting capabilities:
 
@@ -154,7 +156,7 @@ Features:
 - Sharpe ratio calculations
 - P&L analysis
 
-## 📊 Monitoring & Logging
+## Monitoring & Logging
 
 ### Log Files
 - `logs/hypervisor.log`: System operation logs
@@ -168,7 +170,7 @@ Features:
 - Funding payments collected
 - Allocation decisions
 
-## 🔧 Development
+## Development
 
 ### Adding New Strategies
 
@@ -187,11 +189,23 @@ The `RiskEngine` class handles:
 - Capital allocation recommendations
 - Risk limit enforcement
 
-## 🚨 Important Notes
+### Future Roadmap
+
+The following features are planned for future development:
+
+- **Futures/Commodities Agent**: Expand beyond crypto to traditional futures markets
+- **Prediction Market Agent**: Integrate with Polymarket and other prediction markets
+- **Economic Data Integration**: Connect to FRED API, Baltic Dry Index, and other macro indicators
+- **Web Scraping**: RSS feeds and specific source monitoring for alternative data
+- **Interactive Brokers API**: Professional-grade brokerage integration
+- **Real-time Trade Orchestration**: Improved execution timing and coordination
+- **Containerization**: Docker support for deployment on Raspberry Pi 5 and other edge devices
+
+## Important Notes
 
 ### Paper Trading vs Live Trading
-- **Paper Trading** (default): Simulated execution, safe for testing
-- **Live Trading**: Real money execution - use with extreme caution
+- Paper Trading (default): Simulated execution, safe for testing
+- Live Trading: Real money execution - use with extreme caution
 
 ### Exchange Connectivity
 - Currently supports Binance and Bybit via ccxt
@@ -204,7 +218,7 @@ The `RiskEngine` class handles:
 - Understand all risk parameters before going live
 - Never risk more capital than you can afford to lose
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -212,11 +226,11 @@ The `RiskEngine` class handles:
 4. Add tests for new functionality
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Uses ccxt for exchange connectivity
 - SQLite for audit logging
